@@ -1,3 +1,4 @@
+PYTHON ?= python3
 PAPER_DIR := paper
 BUILD_DIR := $(PAPER_DIR)/build
 ARXIV_DIR := $(BUILD_DIR)/arxiv
@@ -5,7 +6,7 @@ ARXIV_DIR := $(BUILD_DIR)/arxiv
 .PHONY: figures paper arxiv test lint clean
 
 figures:
-	python scripts/make_figures.py
+	$(PYTHON) scripts/make_figures.py
 
 paper: figures
 	cd $(PAPER_DIR) && latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build main.tex
@@ -20,10 +21,10 @@ arxiv: paper
 	@echo "arXiv package: $(BUILD_DIR)/arxiv.tar.gz"
 
 test:
-	pytest
+	$(PYTHON) -m pytest
 
 lint:
-	ruff check src scripts tests
+	$(PYTHON) -m ruff check src scripts tests
 
 clean:
 	rm -rf $(BUILD_DIR)

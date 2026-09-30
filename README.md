@@ -19,10 +19,13 @@ tests/                 pytest tests
 ## Setup
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 ```
+
+`make` uses `.venv/bin/python` automatically when it exists (otherwise `python3`;
+override with `make test PYTHON=/path/to/python`).
 
 To build the paper locally you need a TeX distribution with `latexmk`
 (TeX Live, MacTeX or MiKTeX). If you don't have one, push your changes: CI builds

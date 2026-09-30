@@ -1,4 +1,4 @@
-PYTHON ?= python3
+PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 PAPER_DIR := paper
 BUILD_DIR := $(PAPER_DIR)/build
 ARXIV_DIR := $(BUILD_DIR)/arxiv
